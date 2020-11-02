@@ -1,0 +1,24 @@
+<h3>New book</h3>
+  <%= form_with scope: :movie, url: movies_path, local: true do |form| %>
+
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title,class:'form-control' %>
+    </p>
+
+    <p>
+      <%= form.label :text %><br>
+      <%= form.text_area :text,class:'form-control' %>
+    </p>
+
+    <p>
+      <%= form.label :images %><br />
+      <%= form.file_field :img %>
+    </p>
+
+    <p><%= form.check_box :remove_img %>画像を削除する</p>
+
+    <p>
+      <%= form.submit 'Submit',class:'btn btn-outline-primary' %>
+    </p>
+  <% end %>

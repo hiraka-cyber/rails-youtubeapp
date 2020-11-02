@@ -1,0 +1,31 @@
+<p>
+ <strong>Title:</strong>
+ <%= @movie.title %>
+</p>
+
+<iframe id="<%= @movie.title %>" title="<%= @movie.title %>" width="100%" height="500px" src="<%= @movie.img.url %>"></iframe>
+
+<p>
+ <strong>Text:</strong>
+ <%= @movie.text %> - <%= @movie.user.username %>
+</p>
+
+<div class="form-inline">
+<% if current_user.already_liked?(@movie) %>
+  <%= button_to '★', movie_like_path(@movie), method: :delete,class:'btn btn-warning' %>
+<% else %>
+  <%= button_to '☆', movie_likes_path(@movie) ,class:'btn btn-outline-warning' %>
+<% end %>
+<h3>:<%= @movie.likes.count %></h3>
+</div>
+<h2>Gooded Users</h2>
+<% @movie.liked_users.each do |user| %>
+  <ul>
+   <li><%= user.username %></li>
+  </ul>
+<% end %>
+
+<strong>Comments</strong>
+<%= render @movie.comments %>
+
+<%= render "comments/form" %>

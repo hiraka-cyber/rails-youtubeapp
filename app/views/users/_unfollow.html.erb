@@ -1,0 +1,3 @@
+<%= form_for(current_user.subscribe_subscribes.find_by(subscribe_id: @user.id), html: { method: :delete }) do |form| %>
+    <%= form.submit "Unfollow" %>
+  <% end %>

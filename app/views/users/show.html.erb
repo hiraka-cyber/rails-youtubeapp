@@ -1,0 +1,39 @@
+<div class="row">
+<div class="col-sm-4">
+   <img src="<%= @user.image %>" width="200px" height="200px" style="border-radius:50%;object-fit:cover;"><br>
+</div>
+<div class="col">
+<p>Profile</p>
+ユーザー名:<%= @user.username %>さん<br>
+メールアドレス:<%= @user.email %><br>
+プロフィール:<%= @user.profile %><br>
+
+<%= render 'follow_form' %>
+<%= render 'stats' %>
+</div>
+</div>
+
+<h2>My movie</h2>
+<div class="row">
+<% @user.movies.each do |movie| %>
+  <div class="col-sm-3">
+   <div class="card">
+    <div class="card-img-top">
+    <iframe src="<%= movie.img.url %>" width="100%" height="100%"></iframe>
+    </div>
+    <div class="card-body">
+     <a href="/movies/<%= movie.id %>"><%= movie.text %></a><br>
+     <%= link_to 'Edit',edit_movie_path(movie) ,class:'btn btn-outline-success' %>
+     <%= link_to 'Destroy',movie_path(movie),method: :delete, data: {confirm: 'Are you sure?'},class:'btn btn-outline-danger' %>
+    </div>
+   </div>
+  </div>
+<% end %>
+</div>
+<h3>Good movie</h3>
+<% @user.liked_movies.each do |movie| %>
+  <%= movie.user.email %>
+  <%= movie.text %><br>
+<% end %>
+
+<%= link_to 'UserArchive', users_path %>

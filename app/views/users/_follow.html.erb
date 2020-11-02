@@ -1,0 +1,4 @@
+<%= form_for(current_user.subscribe_subscribes.build(subscribe_id: @user.id)) do |form| %>
+    <div><%= form.hidden_field :subscribe_id %></div>
+    <%= form.submit "Follow" %>
+  <% end %>
